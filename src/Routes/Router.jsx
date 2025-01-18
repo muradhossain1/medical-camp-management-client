@@ -3,6 +3,8 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/JoinUs/Login";
 import Resgister from "../Pages/JoinUs/Resgister";
+import AvailableCamps from "../Pages/AvailableCamps/AvailableCamps";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Router = createBrowserRouter([
@@ -13,6 +15,10 @@ const Router = createBrowserRouter([
         {
             path : '/',
             element: <Home></Home>
+        },
+        {
+            path : '/avaiableCamps',
+            element: <PrivateRoute><AvailableCamps></AvailableCamps></PrivateRoute>
         },
         {
             path : '/login',

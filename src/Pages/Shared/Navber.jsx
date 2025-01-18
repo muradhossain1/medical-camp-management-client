@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../../public/logo.png'
@@ -7,6 +7,7 @@ import logo from '../../../public/logo.png'
 
 const Navber = () => {
     const { user, logOut } = useAuth()
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logOut()
@@ -18,12 +19,14 @@ const Navber = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/')
             })
             .catch(error => { console.log(error) })
     }
 
     const navlinks = <>
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
+        <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
         <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li>
     </>
     return (

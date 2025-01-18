@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
@@ -11,6 +11,8 @@ import registerlottie from '../../assets/lottie/registerLottie.json'
 const Resgister = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { createUser, googleSignIn, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const onSubmit = (data) => {
         console.log(data)
@@ -29,6 +31,7 @@ const Resgister = () => {
                 });
                 updateUserProfile(data.name, data.photoURL);
                 reset();
+                navigate(location?.state ? location.state : '/')
             })
     }
     const handleLoginGoogle = () => {
@@ -41,7 +44,7 @@ const Resgister = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                // navigate(location?.state ? location.state : '/')
+                navigate(location?.state ? location.state : '/')
             })
             .catch(err => {
                 console.log(err.message)
@@ -63,7 +66,7 @@ const Resgister = () => {
                         </div>
                         <div
                             onClick={handleLoginGoogle}
-                            className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50  '
+                            className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-100  '
                         >
                             <div className='px-4 py-2'>
                                 <svg className='w-6 h-6' viewBox='0 0 40 40'>
