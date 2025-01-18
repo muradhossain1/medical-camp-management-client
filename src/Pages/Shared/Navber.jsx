@@ -1,8 +1,33 @@
 
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import logo from '../../../public/logo.png'
+
 
 const Navber = () => {
+    const { user, logOut } = useAuth()
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User Logout successfully!!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => { console.log(error) })
+    }
+
+    const navlinks = <>
+        <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
+        <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li>
+    </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-red-50 fixed z-10 top-0 md:px-12 lg:px-20">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -22,42 +47,44 @@ const Navber = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
+                        {navlinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to='/'>
+                    <div className="flex items-center w-12 gap-3">
+                        <img src={logo} alt="" />
+                        <h2 className="text-3xl font-bold">MCMS</h2>
+                    </div>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><a>Item 3</a></li>
+                    {navlinks}
                 </ul>
             </div>
             <div className="navbar-end">
-                <details className="dropdown dropdown-end">
-                    <summary className="btn m-1">open or close</summary>
-                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
+                {user ? <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-12 rounded-full">
+                            <img
+                                alt="Tailwind CSS Navbar component"
+                                src={user.photoURL} />
+                        </div>
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className=" menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 space-y-2 font-semibold text-center p-2 shadow">
+                        <li>
+                            <p className="justify-between">
+                                {user.displayName}
+                            </p>
+                        </li>
+                        <li><button className="w-full bg-gray-700 text-white hover:bg-gray-800" ><Link to='dashboard'>Dashboard</Link></button></li>
+                        <li><button onClick={handleLogout} className="w-full bg-gray-700 text-white hover:bg-gray-800">logout</button></li>
                     </ul>
-                </details>
+                </div> : <>
+                    <button className=" px-6 py-2 text-sm text-white font-medium my-2 bg-gray-700 rounded-lg hover:bg-gray-800"><Link to='register'>Register</Link></button>
+                </>}
             </div>
         </div>
     );
