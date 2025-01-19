@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageRegistered = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -13,10 +14,46 @@ const ManageRegistered = () => {
         }
     })
     const handleDeleteUser = (user) => {
-        console.log(user)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${user._id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
     }
     const handleMakeAdmin = (user) => {
-        console.log(user)
+        axiosSecure.patch(`users/admin/${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${user.name} is an Admin Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
     }
     return (
 
@@ -40,9 +77,11 @@ const ManageRegistered = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost text-xl bg-orange-600 text-white">
-                                        <FaUsers></FaUsers>
-                                    </button>
+                                    {
+                                        user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost text-xl bg-orange-600 text-white">
+                                            <FaUsers></FaUsers>
+                                        </button>
+                                    }
                                 </td>
                                 <td>
                                     <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost text-xl text-red-600">

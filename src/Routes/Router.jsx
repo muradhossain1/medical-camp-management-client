@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Analytics from "../Pages/Dashboard/Analytics";
 import ManageRegistered from "../Pages/Dashboard/ManageRegistered";
+import OrganizerRoutes from "./OrganizerRoutes";
 
 
 const Router = createBrowserRouter([
@@ -44,7 +45,7 @@ const Router = createBrowserRouter([
         // Organizer routes
         {
           path: 'manageRegistered',
-          element: <ManageRegistered></ManageRegistered>
+          element: <OrganizerRoutes><ManageRegistered></ManageRegistered></OrganizerRoutes>
         },
       ]
     },

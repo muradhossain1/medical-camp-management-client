@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { NavLink, Outlet } from "react-router-dom";
+import useOrganizer from "../hooks/useOrganizer";
 
-const isAdmin = true;
+
 
 const Dashboard = () => {
+    const [organizer] = useOrganizer();
     return (
         <div>
             <Helmet>
@@ -14,7 +16,7 @@ const Dashboard = () => {
                 <div className="w-64 min-h-screen bg-red-100">
                     <ul className="menu p-4">
                         {
-                            isAdmin ? <>
+                            organizer ? <>
                                 <li><NavLink to='/dashboard/organizerProfile'>Organizer Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/addCamp'>Add A Camp</NavLink></li>
                                 <li><NavLink to='/dashboard/manageCamp'>Manage Camps</NavLink></li>

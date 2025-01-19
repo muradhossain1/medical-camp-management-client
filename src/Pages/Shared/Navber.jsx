@@ -70,8 +70,9 @@ const Navber = () => {
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-12 rounded-full">
                             <img
-                                alt="Tailwind CSS Navbar component"
-                                src={user.photoURL} />
+                                alt="photo"
+                                src={user.photoURL} 
+                                referrerPolicy="no-referrer"/>
                         </div>
                     </div>
                     <ul
