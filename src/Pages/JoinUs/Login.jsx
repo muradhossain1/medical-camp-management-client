@@ -6,12 +6,14 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
 import loginLottie from '../../assets/lottie/loginLottie.json'
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const { signIn, googleSignIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = async (data) => {
         const email = data.email
@@ -32,21 +34,28 @@ const Login = () => {
     }
 
     const handleLoginGoogle = () => {
-            googleSignIn()
-                .then(() => {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "User login successfully!!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate(location?.state ? location.state : '/')
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
-        }
+        googleSignIn()
+            .then((result) => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User Resgister successfully!!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                        }
+                    })
+                navigate(location?.state ? location.state : '/')
+            })
+    }
 
     return (
         <div className="pt-4">

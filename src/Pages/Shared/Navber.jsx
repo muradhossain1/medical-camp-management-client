@@ -82,7 +82,7 @@ const Navber = () => {
                                 {user.displayName}
                             </p>
                         </li>
-                        <li><button className="w-full bg-gray-700 text-white hover:bg-gray-800" ><Link to='dashboard'>Dashboard</Link></button></li>
+                        <li><button className="w-full bg-gray-700 text-white hover:bg-gray-800" ><Link to='/dashboard'>Dashboard</Link></button></li>
                         <li><button onClick={handleLogout} className="w-full bg-gray-700 text-white hover:bg-gray-800">logout</button></li>
                     </ul>
                 </div> : <>

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Lottie from "lottie-react";
 import registerlottie from '../../assets/lottie/registerLottie.json'
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 
@@ -13,6 +14,7 @@ const Resgister = () => {
     const { createUser, googleSignIn, updateUserProfile } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = (data) => {
         console.log(data)
@@ -22,32 +24,50 @@ const Resgister = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User Resgister successfully!!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                updateUserProfile(data.name, data.photoURL);
-                reset();
-                navigate(location?.state ? location.state : '/')
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: email,
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "User Resgister successfully!!",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    reset();
+                                    navigate(location?.state ? location.state : '/')
+                                }
+                            })
+                    })
             })
     }
     const handleLoginGoogle = () => {
         googleSignIn()
-            .then(() => {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User login successfully!!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(location?.state ? location.state : '/')
-            })
-            .catch(err => {
-                console.log(err.message)
+            .then((result) => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User Resgister successfully!!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+                    navigate(location?.state ? location.state : '/')
             })
     }
     return (

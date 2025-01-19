@@ -5,6 +5,9 @@ import Login from "../Pages/JoinUs/Login";
 import Resgister from "../Pages/JoinUs/Resgister";
 import AvailableCamps from "../Pages/AvailableCamps/AvailableCamps";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import Analytics from "../Pages/Dashboard/Analytics";
+import ManageRegistered from "../Pages/Dashboard/ManageRegistered";
 
 
 const Router = createBrowserRouter([
@@ -18,7 +21,7 @@ const Router = createBrowserRouter([
         },
         {
             path : '/avaiableCamps',
-            element: <PrivateRoute><AvailableCamps></AvailableCamps></PrivateRoute>
+            element: <AvailableCamps></AvailableCamps>
         },
         {
             path : '/login',
@@ -27,6 +30,21 @@ const Router = createBrowserRouter([
         {
             path : '/register',
             element: <Resgister></Resgister>
+        },
+      ]
+    },
+    {
+      path: '/dashboard',
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children: [
+        {
+          path: 'analytics',
+          element: <Analytics></Analytics>
+        },
+        // Organizer routes
+        {
+          path: 'manageRegistered',
+          element: <ManageRegistered></ManageRegistered>
         },
       ]
     },
