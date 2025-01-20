@@ -10,50 +10,60 @@ import Analytics from "../Pages/Dashboard/Analytics";
 import ManageRegistered from "../Pages/Dashboard/ManageRegistered";
 import OrganizerRoutes from "./OrganizerRoutes";
 import AddCamps from "../Pages/Dashboard/AddCamps";
-
+import ManageCamps from "../Pages/Dashboard/ManageCamps";
+import CampUpdate from "../Pages/Dashboard/CampUpdate";
 
 const Router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      children: [
-        {
-            path : '/',
-            element: <Home></Home>
-        },
-        {
-            path : '/avaiableCamps',
-            element: <AvailableCamps></AvailableCamps>
-        },
-        {
-            path : '/login',
-            element: <Login></Login>
-        },
-        {
-            path : '/register',
-            element: <Resgister></Resgister>
-        },
-      ]
-    },
-    {
-      path: '/dashboard',
-      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-      children: [
-        {
-          path: 'analytics',
-          element: <Analytics></Analytics>
-        },
-        // Organizer  routes
-        {
-          path: 'addCamp',
-          element: <OrganizerRoutes><AddCamps></AddCamps></OrganizerRoutes>
-        },
-        {
-          path: 'manageRegistered',
-          element: <OrganizerRoutes><ManageRegistered></ManageRegistered></OrganizerRoutes>
-        },
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/avaiableCamps',
+        element: <AvailableCamps></AvailableCamps>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Resgister></Resgister>
+      },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children: [
+      {
+        path: 'analytics',
+        element: <Analytics></Analytics>
+      },
+      // Organizer  routes
+      {
+        path: 'addCamp',
+        element: <OrganizerRoutes><AddCamps></AddCamps></OrganizerRoutes>
+      },
+      {
+        path: 'manageCamps',
+        element: <OrganizerRoutes><ManageCamps></ManageCamps></OrganizerRoutes>
+      },
+      {
+        path: 'updateCamp/:id',
+        element: <OrganizerRoutes><CampUpdate></CampUpdate></OrganizerRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:5000/camps/${params.id}`)
+      },
+      {
+        path: 'manageRegistered',
+        element: <OrganizerRoutes><ManageRegistered></ManageRegistered></OrganizerRoutes>
+      },
+    ]
+  },
+]);
 
 export default Router;

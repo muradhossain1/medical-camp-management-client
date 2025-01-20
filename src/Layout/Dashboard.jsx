@@ -19,7 +19,7 @@ const Dashboard = () => {
                             organizer ? <>
                                 <li><NavLink to='/dashboard/organizerProfile'>Organizer Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/addCamp'>Add A Camp</NavLink></li>
-                                <li><NavLink to='/dashboard/manageCamp'>Manage Camps</NavLink></li>
+                                <li><NavLink to='/dashboard/manageCamps'>Manage Camps</NavLink></li>
                                 <li><NavLink to='/dashboard/manageRegistered'>Manage Registered Camps</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/analytics'>Analytics</NavLink></li>
