@@ -10,12 +10,12 @@ const OrganizerRoutes = ({ children }) => {
     const location = useLocation();
 
     if (loading || isOrganizerLoading) {
-        return <progress className="progress w-56"></progress>
+        return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-spinner loading-lg"></span></div>
     }
     if (user && organizer) {
         return children
     }
-    return <Navigate state={location.pathname} to='/login'></Navigate>
+    return <Navigate state={location.pathname} to='/'></Navigate>
 };
 
 export default OrganizerRoutes;

@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import Analytics from "../Pages/Dashboard/Analytics";
 import ManageRegistered from "../Pages/Dashboard/ManageRegistered";
 import OrganizerRoutes from "./OrganizerRoutes";
+import AddCamps from "../Pages/Dashboard/AddCamps";
 
 
 const Router = createBrowserRouter([
@@ -42,7 +43,11 @@ const Router = createBrowserRouter([
           path: 'analytics',
           element: <Analytics></Analytics>
         },
-        // Organizer routes
+        // Organizer  routes
+        {
+          path: 'addCamp',
+          element: <OrganizerRoutes><AddCamps></AddCamps></OrganizerRoutes>
+        },
         {
           path: 'manageRegistered',
           element: <OrganizerRoutes><ManageRegistered></ManageRegistered></OrganizerRoutes>

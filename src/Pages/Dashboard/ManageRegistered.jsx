@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageRegistered = () => {
     const axiosSecure = useAxiosSecure();
@@ -58,6 +59,9 @@ const ManageRegistered = () => {
     return (
 
         <div>
+            <Helmet>
+                <title>Dashboard | Manage Registered</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
