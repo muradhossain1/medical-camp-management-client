@@ -22,7 +22,7 @@ const ManageCamps = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axiosSecure.delete(`/camp/${camp._id}`)
+                const res = await axiosSecure.delete(`/delete-camp/${camp._id}`)
                 if (res.data.deletedCount > 0) {
                     refetch()
                     Swal.fire({

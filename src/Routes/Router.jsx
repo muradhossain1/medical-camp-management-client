@@ -12,6 +12,7 @@ import OrganizerRoutes from "./OrganizerRoutes";
 import AddCamps from "../Pages/Dashboard/AddCamps";
 import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import CampUpdate from "../Pages/Dashboard/CampUpdate";
+import DetailsCamp from "../Pages/DetailsCamp/DetailsCamp";
 
 const Router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const Router = createBrowserRouter([
       {
         path: '/avaiableCamps',
         element: <AvailableCamps></AvailableCamps>
+      },
+      {
+        path: '/details/:id',
+        element: <PrivateRoute><DetailsCamp></DetailsCamp></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/camp-details/${params.id}`)
       },
       {
         path: '/login',

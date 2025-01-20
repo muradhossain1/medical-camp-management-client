@@ -32,7 +32,7 @@ const CampUpdate = () => {
                 description: data.description,
                 participantCount: 0
             }
-            const campRes = await axiosSecure.patch(`/camps/${_id}`, campData)
+            const campRes = await axiosSecure.patch(`/update-camp/${_id}`, campData)
             console.log(campRes.data)
             if (campRes.data.modifiedCount > 0) {
                 reset()

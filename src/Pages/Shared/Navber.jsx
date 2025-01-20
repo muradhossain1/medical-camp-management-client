@@ -27,7 +27,7 @@ const Navber = () => {
     const navlinks = <>
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
         <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
-        <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li>
+        { !user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''}
     </>
     return (
         <div className="navbar bg-red-50 fixed z-10 top-0 md:px-12 lg:px-20">
