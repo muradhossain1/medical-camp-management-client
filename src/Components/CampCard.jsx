@@ -5,7 +5,7 @@ import { FaCalendarWeek } from "react-icons/fa";
 
 
 const CampCard = ({ camp }) => {
-    const { _id, campName, image, date, location, healthcareName, participantCount, description } = camp;
+    const { _id, campName, image, price, date, location, healthcareName, participantCount, description } = camp;
     return (
         <div className="card bg-base-100 shadow-xl p-4 border">
             <figure className="">
@@ -17,6 +17,7 @@ const CampCard = ({ camp }) => {
             <div className=" space-y-2 mt-4 ">
                 <h2 className="card-title font-bold">{campName}</h2>
                 <p>{healthcareName}</p>
+                <p>${price}</p>
                 <p className="flex gap-2 items-center"><FaLocationDot /> {location}</p>
                 <p className="flex gap-2 items-center"><FaCalendarWeek /> {date}</p>
                 <p> Participant Count: {participantCount}</p>

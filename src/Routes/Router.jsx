@@ -29,8 +29,7 @@ const Router = createBrowserRouter([
       },
       {
         path: '/details/:id',
-        element: <PrivateRoute><DetailsCamp></DetailsCamp></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/camp-details/${params.id}`)
+        element: <PrivateRoute><DetailsCamp></DetailsCamp></PrivateRoute>
       },
       {
         path: '/login',
