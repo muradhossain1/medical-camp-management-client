@@ -27,6 +27,7 @@ const Navber = () => {
     const navlinks = <>
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
         <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
+        <li><Link className="font-semibold text-sm" to='/about'>About Us</Link></li>
         {/* {!user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''} */}
     </>
     return (

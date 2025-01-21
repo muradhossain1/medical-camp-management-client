@@ -13,6 +13,7 @@ import AddCamps from "../Pages/Dashboard/AddCamps";
 import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import CampUpdate from "../Pages/Dashboard/CampUpdate";
 import DetailsCamp from "../Pages/DetailsCamp/DetailsCamp";
+import About from "../Pages/About/About";
 
 const Router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const Router = createBrowserRouter([
       {
         path: '/details/:id',
         element: <PrivateRoute><DetailsCamp></DetailsCamp></PrivateRoute>
+      },
+      {
+        path: '/about',
+        element: <About></About>
       },
       {
         path: '/login',

@@ -23,7 +23,7 @@ const Home = () => {
                 <Banner></Banner>
             </div>
             <main >
-                {/* recent blogs section */}
+                {/* Popular Medical Camps section */}
                 <div>
                     <h2 className="text-2xl my-8 md:text-4xl text-center font-bold ">Popular Medical Camps </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
