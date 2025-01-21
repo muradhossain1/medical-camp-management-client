@@ -60,7 +60,7 @@ const ManageCamps = () => {
                     </thead>
                     <tbody>
                         {
-                            camps.map((camp, index) => <tr key={camp._id}>
+                            camps?.map((camp, index) => <tr key={camp._id}>
                                 <th>{index + 1}</th>
                                 <td>{camp.campName}</td>
                                 <td>{camp.date}</td>

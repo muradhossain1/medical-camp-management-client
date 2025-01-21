@@ -27,7 +27,7 @@ const Navber = () => {
     const navlinks = <>
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
         <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
-        { !user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''}
+        {/* {!user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''} */}
     </>
     return (
         <div className="navbar bg-red-50 fixed z-10 top-0 md:px-12 lg:px-20">
@@ -71,8 +71,8 @@ const Navber = () => {
                         <div className="w-12 rounded-full">
                             <img
                                 alt="photo"
-                                src={user.photoURL} 
-                                referrerPolicy="no-referrer"/>
+                                src={user.photoURL}
+                                referrerPolicy="no-referrer" />
                         </div>
                     </div>
                     <ul
@@ -87,7 +87,10 @@ const Navber = () => {
                         <li><button onClick={handleLogout} className="w-full bg-gray-700 text-white hover:bg-gray-800">logout</button></li>
                     </ul>
                 </div> : <>
-                    <button className=" px-6 py-2 text-sm text-white font-medium my-2 bg-gray-700 rounded-lg hover:bg-gray-800"><Link to='register'>Register</Link></button>
+                    <Link>
+                        <button className=" px-6 py-2 text-sm text-white font-medium my-2 bg-gray-700 rounded-lg hover:bg-gray-800"><Link to='/login'>Join Us</Link></button>
+                    </Link>
+
                 </>}
             </div>
         </div>
