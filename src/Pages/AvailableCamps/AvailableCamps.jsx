@@ -84,7 +84,7 @@ const AvailableCamps = () => {
                         </button>
                     </div>
                 </div>
-                <div className={`grid gap-6 pt-8 ${layout === false ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'}`}>
+                <div className={`grid gap-6 pt-8 ${layout === false ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
                     {
                         camps?.map(camp => <CampCard key={camp._id} camp={camp}></CampCard>)
                     }
