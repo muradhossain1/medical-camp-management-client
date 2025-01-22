@@ -18,6 +18,7 @@ import OrganizerProfile from "../Pages/Dashboard/OrganizerProfile";
 import UpdateOrgProfile from "../Pages/Dashboard/updateOrgProfile";
 import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile";
 import UpdateParticipantProfile from "../Pages/Dashboard/updateParticipantProfile";
+import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
 
 const Router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const Router = createBrowserRouter([
     children: [
       // participant routes
       {
+        path: 'analytics',
+        element: <Analytics></Analytics>
+      },
+      {
         path: 'participantProfile',
         element: <ParticipantProfile></ParticipantProfile>
       },
@@ -64,8 +69,8 @@ const Router = createBrowserRouter([
         element: <UpdateParticipantProfile></UpdateParticipantProfile>
       },
       {
-        path: 'analytics',
-        element: <Analytics></Analytics>
+        path: 'registeredCamps',
+        element: <RegisteredCamps></RegisteredCamps>
       },
       // Organizer  routes
       {
