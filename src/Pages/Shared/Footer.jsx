@@ -7,11 +7,11 @@ const Footer = () => {
             <footer className="footer md:px-12 lg:px-20 bg-base-200 text-base-content p-10">
                 <aside>
                     <img className="w-16" src={logoCamp} alt="" />
-                    <p>
+                    <div>
                         <span className="text-lg font-medium">Medical Camp Management System</span>
                         <br />
                         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-                    </p>
+                    </div>
                 </aside>
                 <nav>
                     <h6 className="footer-title">Services</h6>

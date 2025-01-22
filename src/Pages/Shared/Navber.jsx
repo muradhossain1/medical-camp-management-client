@@ -88,8 +88,8 @@ const Navber = () => {
                         <li><button onClick={handleLogout} className="w-full bg-gray-700 text-white hover:bg-gray-800">logout</button></li>
                     </ul>
                 </div> : <>
-                    <Link>
-                        <button className=" px-6 py-2 text-sm text-white font-medium my-2 bg-gray-700 rounded-lg hover:bg-gray-800"><Link to='/login'>Join Us</Link></button>
+                    <Link to='/login'>
+                        <button className=" px-6 py-2 text-sm text-white font-medium my-2 bg-gray-700 rounded-lg hover:bg-gray-800">Join Us</button>
                     </Link>
 
                 </>}

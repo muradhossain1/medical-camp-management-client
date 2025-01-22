@@ -8,7 +8,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const CampUpdate = () => {
-    const { _id, campName, price, date, location, healthcareName, description } = useLoaderData();
+    const { _id, campName, image, price, date, location, healthcareName, description } = useLoaderData();
     const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
@@ -67,12 +67,15 @@ const CampUpdate = () => {
                                 type="text" placeholder="Camp Name" className="input input-bordered w-full" required />
                         </label>
                         {/* image */}
-                        <div className="form-control w-full  ">
+                        <label className="form-control w-full  ">
                             <div className="label">
                                 <span className="label-text text-base font-semibold">Image</span>
                             </div>
-                            <input {...register("image")} type="file" className="file-input file-input-bordered w-full  " required />
-                        </div>
+                            <input
+                                {...register("image")}
+                                defaultValue={image}
+                                type="text" placeholder="Image" className="input input-bordered w-full" required />
+                        </label>
                         {/* Camp Fees */}
                         <label className="form-control w-full  ">
                             <div className="label">

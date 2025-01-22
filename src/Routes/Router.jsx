@@ -14,6 +14,8 @@ import ManageCamps from "../Pages/Dashboard/ManageCamps";
 import CampUpdate from "../Pages/Dashboard/CampUpdate";
 import DetailsCamp from "../Pages/DetailsCamp/DetailsCamp";
 import About from "../Pages/About/About";
+import OrganizerProfile from "../Pages/Dashboard/OrganizerProfile";
+import UpdateOrgProfile from "../Pages/Dashboard/updateOrgProfile";
 
 const Router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ const Router = createBrowserRouter([
         element: <Analytics></Analytics>
       },
       // Organizer  routes
+      {
+        path: 'organizerProfile',
+        element: <OrganizerRoutes><OrganizerProfile></OrganizerProfile></OrganizerRoutes>
+      },
+      {
+        path: 'updateOrgProfile/:id',
+        element: <OrganizerRoutes><UpdateOrgProfile></UpdateOrgProfile></OrganizerRoutes>
+      },
       {
         path: 'addCamp',
         element: <OrganizerRoutes><AddCamps></AddCamps></OrganizerRoutes>
