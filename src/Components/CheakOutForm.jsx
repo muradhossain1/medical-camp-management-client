@@ -18,13 +18,11 @@ const CheakOutForm = ({ register, refetch }) => {
     const price = register.price;
     const navigate = useNavigate();
 
-    console.log(register)
-
     useEffect(() => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                    console.log(res.data)
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -71,54 +69,64 @@ const CheakOutForm = ({ register, refetch }) => {
                 const payment = {
                     email: user?.email,
                     price: price,
+                    campName: register.campName,
                     transactionId: paymentIntent.id,
-                    date: new Date(), 
+                    date: new Date(),
                     JoinCampId: register._id,
                     campId: register.campId,
-                    status: 'pending'
+                    paymentStatus: 'paid',
+                    confirmStatus: 'panding'
                 }
                 const res = await axiosSecure.post('payments', payment)
                 console.log('payment saved', res.data)
                 refetch();
-                if(res.data?.insertedId){
+                if (res.data?.insertedId) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
                         title: `${paymentIntent.id} Payment Successfully`,
                         showConfirmButton: false,
                         timer: 1500
-                      });
-                      navigate('/dashboard/paymentHistory')
+                    });
+                    navigate('/dashboard/paymentHistory')
                 }
             }
         }
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <div className="border p-4 rounded-lg mx-auto shadow-lg">
+            <div className="flex justify-between ">
+                <h2 className="text-xl font-medium">{register.campName}</h2>
+                <p className="text-xl font-medium">${register.price}</p>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button className="btn btn-sm btn-primary my-4" type="submit"
-                disabled={!stripe || !clientSecret}
-            >
-                Pay
-            </button>
-            <p className="text-red-600">{error}</p>
-            {transactionId && <p className="text-green-600">Your transaction id : {transactionId}</p>}
-        </form>
+                    }}
+                />
+                <div className="text-end">
+                    <button className="btn btn-sm btn-primary mt-4" type="submit"
+                        disabled={!stripe || !clientSecret}
+                    >
+                        Pay
+                    </button>
+                </div>
+                <p className="text-red-600">{error}</p>
+                {transactionId && <p className="text-green-600">Your transaction id : {transactionId}</p>}
+            </form>
+        </div>
     );
 };
 
