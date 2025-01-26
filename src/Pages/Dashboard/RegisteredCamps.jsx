@@ -2,37 +2,38 @@ import { Helmet } from "react-helmet-async";
 import useJoinCamps from "../../hooks/useJoinCamps";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const RegisteredCamps = () => {
     const [registers, refetch] = useJoinCamps();
     const axiosSecure = useAxiosSecure();
 
     const handleDeleteRegister = (register) => {
-         Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        const res = await axiosSecure.delete(`/join-camp/${register._id}`)
-                        console.log(res.data)
-                        if (res.data.deletedCount > 0) {
-                            refetch()
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: `${register.campName} has been deleted`,
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-        
-                        }
-                    }
-                });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/join-camp/${register._id}`)
+                console.log(res.data)
+                if (res.data.deletedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${register.campName} has been deleted`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+            }
+        });
     }
     return (
         <div>
@@ -64,17 +65,21 @@ const RegisteredCamps = () => {
                                 <td>{register.campName}</td>
                                 <td className="text-right">${register.price}</td>
                                 <td>{register.participantName}</td>
-                                <td>
-                                    <button className="py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700">Pay</button>
+                                <td className="text-center">
+                                    {register.paymentStatus === 'paid' ? 'Paid' : <Link to={`/dashboard/paymentCamp/${register._id}`}>
+                                        <button className="py-2 px-4 rounded-md text-white bg-blue-600 hover:bg-blue-700">Pay</button>
+                                    </Link>}
                                 </td>
-                                <td>
-                                    Pending
+                                <td className="text-center">
+                                    Panding
                                 </td>
                                 <td >
-                                    <button onClick={() => handleDeleteRegister(register)} className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100">cancel</button>
+                                    {register.paymentStatus=== 'paid' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
+                                        className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100"
+                                    >cancel</button>}
                                 </td>
                                 <td>
-                                    <button className="py-2 px-4 rounded-md bg-red-200 hover:bg-red-100">Feedback</button>
+                                    {register.paymentStatus === 'paid' ?<button className="py-2 px-4 rounded-md bg-red-200 hover:bg-red-100">Feedback</button> :<button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Feedback</button>}
                                 </td>
                             </tr>)
                         }

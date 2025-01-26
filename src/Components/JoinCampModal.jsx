@@ -139,7 +139,7 @@ const JoinCampModal = ({ camp, refetch }) => {
                                         <span className="label-text text-base font-semibold">Gender</span>
                                     </div>
                                     <select
-                                        {...register("gender")}
+                                        {...register("gender", {required: true})}
                                         className='border p-3 rounded-md'
                                         defaultValue="Select Gender"
                                     >
@@ -148,6 +148,7 @@ const JoinCampModal = ({ camp, refetch }) => {
                                         <option value='female'>Female</option>
                                         <option value='others'>Others</option>
                                     </select>
+                                    {errors.gender?.type === 'required' && <span className="text-red-600">Gander is required</span>}
                                 </label>
                                 {/* Emergency Contact*/}
                                 <label className="form-control w-full  ">

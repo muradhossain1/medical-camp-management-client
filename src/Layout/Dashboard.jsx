@@ -25,11 +25,12 @@ const Dashboard = () => {
                                 <li><NavLink to='/dashboard/analytics'>Analytics</NavLink></li>
                                 <li><NavLink to='/dashboard/participantProfile'>Participant Profile</NavLink></li>
                                 <li><NavLink to='/dashboard/registeredCamps'>Registered Camps</NavLink></li>
-                                <li><NavLink to='/dashboard/payment'>Payment History</NavLink></li>
+                                <li><NavLink to='/dashboard/paymentHistory'>Payment History</NavLink></li>
                             </>
                         }
                         <div className="divider"></div>
                         <li><NavLink to='/'>Home</NavLink></li>
+                        <li><NavLink to='/avaiableCamps'>Avaiable Camps</NavLink></li>
                     </ul>
                 </div>
                 {/* dashboard contant */}

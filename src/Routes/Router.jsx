@@ -19,6 +19,7 @@ import UpdateOrgProfile from "../Pages/Dashboard/updateOrgProfile";
 import ParticipantProfile from "../Pages/Dashboard/ParticipantProfile";
 import UpdateParticipantProfile from "../Pages/Dashboard/updateParticipantProfile";
 import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
+import PaymentCamp from "../Pages/Dashboard/PaymentCamp";
 
 const Router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const Router = createBrowserRouter([
       {
         path: 'registeredCamps',
         element: <RegisteredCamps></RegisteredCamps>
+      },
+      {
+        path: 'paymentcamp/:id',
+        element: <PaymentCamp></PaymentCamp>
       },
       // Organizer  routes
       {
