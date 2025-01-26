@@ -3,6 +3,7 @@ import useJoinCamps from "../../hooks/useJoinCamps";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import FeedbackModal from "../../Components/FeedbackModal";
 
 const RegisteredCamps = () => {
     const [registers, refetch] = useJoinCamps();
@@ -71,15 +72,16 @@ const RegisteredCamps = () => {
                                     </Link>}
                                 </td>
                                 <td className="text-center">
-                                    {register.confirmationStatus === 'confirm'? 'Confirm' : 'Panding'}
+                                    {register.confirmationStatus === 'confirm' ? 'Confirm' : 'Panding'}
                                 </td>
                                 <td >
-                                    {register.paymentStatus=== 'paid' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
+                                    {register.paymentStatus === 'paid' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
                                         className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100"
                                     >cancel</button>}
                                 </td>
                                 <td>
-                                    {register.paymentStatus === 'paid' ?<button className="py-2 px-4 rounded-md bg-red-200 hover:bg-red-100">Feedback</button> :<button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Feedback</button>}
+                                    {register.paymentStatus === 'paid' && register.confirmationStatus === 'confirm' ?
+                                        <FeedbackModal refetch={refetch}></FeedbackModal> : <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Feedback</button>}
                                 </td>
                             </tr>)
                         }
