@@ -8,7 +8,7 @@ const useJoinCamps = () => {
     const { refetch, data: registers = [] } = useQuery({
         queryKey: ['join-camp', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/join-camps?participantEmail=${user?.email}`)
+            const res = await axiosSecure.get(`/join-camp?participantEmail=${user?.email}`)
             return res.data;
         }
     })

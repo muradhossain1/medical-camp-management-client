@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
 const ManageRegistered = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+    const { data: registers = [], refetch } = useQuery({
+        queryKey: ['join-camps'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
+            const res = await axiosSecure.get('/registers');
             return res.data
         }
     })
-    const handleDeleteUser = (user) => {
+    const handleDeleteRegister = (register) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -23,25 +22,26 @@ const ManageRegistered = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/users/${user._id}`)
-                    .then(res => {
-                        if (res.data.deletedCount > 0) {
-                            refetch()
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    })
+                const res = await axiosSecure.delete(`/join-camp/${register._id}`)
+                console.log(res.data)
+                if (res.data.deletedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${register.campName} has been deleted`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
 
+                }
             }
         });
     }
-    const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`users/admin/${user._id}`)
+    const handleMakeConfirm = (register) => {
+        axiosSecure.patch(`/confirmation/${register._id}`)
             .then(res => {
                 console.log(res.data)
                 if (res.data.modifiedCount > 0) {
@@ -49,7 +49,7 @@ const ManageRegistered = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${user.name} is an Admin Now`,
+                        title: "Confirmation successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -62,35 +62,42 @@ const ManageRegistered = () => {
             <Helmet>
                 <title>Dashboard | Manage Registered</title>
             </Helmet>
+            <div>
+                <h2 className="text-center text-4xl font-bold my-6">Manage Registered</h2>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>Participant Name</th>
+                            <th>Camp name</th>
+                            <th>Camp Fees</th>
+                            <th>payment status</th>
+                            <th>Confirmation</th>
+                            <th>cancel</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            registers?.map((register, index) => <tr key={register._id}>
                                 <th>{index + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
+                                <td>{register.participantName}</td>
+                                <td>{register.campName}</td>
+                                <td className="text-end">${register.price}</td>
+                                <td>{register.paymentStatus === 'paid' ? 'Paid' : 'Unpaid'}</td>
                                 <td>
                                     {
-                                        user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost text-xl bg-orange-600 text-white">
-                                            <FaUsers></FaUsers>
+                                        register.confirmationStatus === 'confirm' ? 'Confirm' : <button onClick={() => handleMakeConfirm(register)} className="btn btn-ghost text-xl bg-orange-600 text-white">
+                                            Panding
                                         </button>
                                     }
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost text-xl text-red-600">
-                                        <FaTrashAlt></FaTrashAlt>
-                                    </button>
+                                    {register.paymentStatus === 'paid' && register.confirmationStatus === 'confirm' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
+                                        className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100"
+                                    >cancel</button>}
                                 </td>
                             </tr>)
                         }

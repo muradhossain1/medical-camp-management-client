@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const JoinCampModal = ({ camp, refetch }) => {
     const { _id, campName, price, location, healthcareName } = camp;
     const { user } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const onSubmit = async (data) => {
         const joinCampData = {
@@ -26,7 +26,7 @@ const JoinCampModal = ({ camp, refetch }) => {
             emergencyContact: data.emergencyContact,
         };
         console.log(joinCampData)
-        const joinCampRes = await axiosPublic.post('/join-camps', joinCampData)
+        const joinCampRes = await axiosSecure.post('/join-camps', joinCampData)
         console.log(joinCampRes.data)
         if (joinCampRes.data.insertedId) {
             Swal.fire({

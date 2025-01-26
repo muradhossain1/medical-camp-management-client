@@ -9,7 +9,7 @@ const MainLayout = () => {
             <header>
                 <Navber></Navber>
             </header>
-            <main className="px-4 md:px-12 lg:px-20 mt-[4.3rem]">
+            <main className="px-4 min-h-screen md:px-12 lg:px-20 mt-[4.3rem]">
                 <Outlet></Outlet>
             </main>
             <footer>

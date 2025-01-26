@@ -71,7 +71,7 @@ const RegisteredCamps = () => {
                                     </Link>}
                                 </td>
                                 <td className="text-center">
-                                    Panding
+                                    {register.confirmationStatus === 'confirm'? 'Confirm' : 'Panding'}
                                 </td>
                                 <td >
                                     {register.paymentStatus=== 'paid' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
