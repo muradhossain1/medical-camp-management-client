@@ -3,6 +3,7 @@ import Banner from './Banner';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import CampCard from '../../Components/CampCard';
+import FeedbackSection from '../../Components/FeedbackSection';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -33,6 +34,10 @@ const Home = () => {
                     </div>
                 </div>
             </main>
+            {/* feedbeck */}
+            <div>
+                <FeedbackSection></FeedbackSection>
+            </div>
         </div>
     );
 };

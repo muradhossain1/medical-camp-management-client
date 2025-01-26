@@ -1,0 +1,39 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { FaStar } from "react-icons/fa";
+
+
+const FeedbackSection = () => {
+    const axiosPublic = useAxiosPublic();
+
+    const { data: feedbacks = [] } = useQuery({
+        queryKey: ['feedback'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/feedbacks')
+            return res.data;
+        }
+    })
+
+    return (
+        <div>
+            <h2 className="text-2xl my-8 md:text-4xl text-center font-bold ">Our Feed-Back</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+                {
+                    feedbacks?.map(feedback => <div key={feedback._id} className="flex gap-6 border shadow-lg rounded-lg p-4">
+                        <div>
+                            <img src={feedback.image} className="w-28 h-28 rounded-lg" alt="" />
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-bold">{feedback.name}</h2>
+                            <p>{feedback.feedback}</p>
+                            <p className="flex items-center gap-2 text-xl font-semibold"><FaStar className="text-yellow-500"></FaStar> {feedback.rating}</p>
+                        </div>
+                    </div>
+                    )
+                }
+            </div>
+        </div>
+    );
+};
+
+export default FeedbackSection;
