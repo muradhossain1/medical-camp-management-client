@@ -17,13 +17,11 @@ const Resgister = () => {
     const axiosPublic = useAxiosPublic();
 
     const onSubmit = (data) => {
-        console.log(data)
         const email = data.email
         const password = data.password
 
         createUser(email, password)
-            .then(result => {
-                console.log(result.user)
+            .then(() => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const userInfo = {
@@ -51,7 +49,6 @@ const Resgister = () => {
     const handleLoginGoogle = () => {
         googleSignIn()
             .then((result) => {
-                console.log(result.user)
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
@@ -59,7 +56,6 @@ const Resgister = () => {
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
-                        console.log(res.data)
                         if (res.data.insertedId) {
                             Swal.fire({
                                 position: "top-end",

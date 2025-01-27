@@ -7,7 +7,7 @@ const ManageRegistered = () => {
     const axiosSecure = useAxiosSecure();
 
     const { data: registers = [], refetch } = useQuery({
-        queryKey: ['join-camps'],
+        queryKey: ['registers'],
         queryFn: async () => {
             const res = await axiosSecure.get('/registers');
             return res.data
@@ -25,7 +25,6 @@ const ManageRegistered = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/join-camp/${register._id}`)
-                console.log(res.data)
                 if (res.data.deletedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -43,7 +42,6 @@ const ManageRegistered = () => {
     const handleMakeConfirm = (register) => {
         axiosSecure.patch(`/confirmation/${register._id}`)
             .then(res => {
-                console.log(res.data)
                 if (res.data.modifiedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -89,7 +87,7 @@ const ManageRegistered = () => {
                                 <td>{register.paymentStatus === 'paid' ? 'Paid' : 'Unpaid'}</td>
                                 <td>
                                     {
-                                        register.confirmationStatus === 'confirm' ? 'Confirm' : <button onClick={() => handleMakeConfirm(register)} className="btn btn-ghost text-xl bg-orange-600 text-white">
+                                        register.confirmationStatus === 'confirm' ? 'Confirm' : <button onClick={() => handleMakeConfirm(register)} className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100">
                                             Panding
                                         </button>
                                     }

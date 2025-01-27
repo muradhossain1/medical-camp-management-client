@@ -8,7 +8,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 const FeedbackModal = ({ refetch }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
 
     const onSubmit = async (data) => {
         const feedbackData = {
@@ -17,9 +17,7 @@ const FeedbackModal = ({ refetch }) => {
             feedback: data.feedback,
             rating: data.rating
         };
-        console.log(feedbackData)
         const feedbackRes = await axiosSecure.post('/feedbacks', feedbackData)
-        console.log(feedbackRes.data)
         if (feedbackRes.data.insertedId) {
             Swal.fire({
                 position: "top-center",
@@ -28,6 +26,7 @@ const FeedbackModal = ({ refetch }) => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            reset()
             refetch();
             document.getElementById('my_modal_5').close();
         }

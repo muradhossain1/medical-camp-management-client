@@ -22,7 +22,6 @@ const CheakOutForm = ({ register, refetch }) => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
                 .then(res => {
-                    console.log(res.data)
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -60,9 +59,7 @@ const CheakOutForm = ({ register, refetch }) => {
         if (confirmError) {
             console.log('error')
         } else {
-            console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log('transaction id', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
 
                 // now save the payment in the database
@@ -78,7 +75,6 @@ const CheakOutForm = ({ register, refetch }) => {
                     confirmStatus: 'panding'
                 }
                 const res = await axiosSecure.post('payments', payment)
-                console.log('payment saved', res.data)
                 refetch();
                 if (res.data?.insertedId) {
                     Swal.fire({

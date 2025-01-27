@@ -8,7 +8,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 const JoinCampModal = ({ camp, refetch }) => {
     const { _id, campName, price, location, healthcareName } = camp;
     const { user } = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset, } = useForm()
     const axiosSecure = useAxiosSecure();
 
     const onSubmit = async (data) => {
@@ -25,9 +25,7 @@ const JoinCampModal = ({ camp, refetch }) => {
             gender: data.gender,
             emergencyContact: data.emergencyContact,
         };
-        console.log(joinCampData)
         const joinCampRes = await axiosSecure.post('/join-camps', joinCampData)
-        console.log(joinCampRes.data)
         if (joinCampRes.data.insertedId) {
             Swal.fire({
                 position: "top-center",
@@ -37,6 +35,7 @@ const JoinCampModal = ({ camp, refetch }) => {
                 timer: 1500
             });
             refetch();
+            reset();
             document.getElementById('my_modal_5').close();
         }
     }

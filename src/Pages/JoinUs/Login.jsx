@@ -18,10 +18,8 @@ const Login = () => {
     const onSubmit = async (data) => {
         const email = data.email
         const password = data.password
-        console.log(email, password)
         signIn(email, password)
-            .then(result => {
-                console.log(result.user)
+            .then(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",

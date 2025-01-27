@@ -46,17 +46,27 @@ const AvailableCamps = () => {
             <div>
                 <h2 className="text-center text-4xl font-bold py-8">Available all Camps</h2>
                 <div className='flex flex-col md:flex-row  items-center justify-center gap-8 '>
-                    <div>
-                        <details className="dropdown">
-                            <summary className="px-6 w-full py-2 text-base text-white font-medium btn text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800">
-                                {sort ? `Sort by: ${sort}` : 'Sort by'}
-                            </summary>
-                            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow font-semibold">
-                                <li onClick={() => handleSort('price')}><a>Sort by Camp Fees</a></li>
-                                <li onClick={() => handleSort('registered')}><a>Sort by Most Registered</a></li>
-                                <li onClick={() => handleSort('alphabetical')}><a>Sort Alphabetical order</a></li>
-                            </ul>
-                        </details>
+                    <div className="flex gap-8">
+                        <div>
+                            <button
+                                onClick={handleLayoutToggle}
+                                className="px-6 w-full py-3 text-base text-white font-medium text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800"
+                            >
+                                Layout
+                            </button>
+                        </div>
+                        <div>
+                            <details className="dropdown">
+                                <summary className="px-6 w-full py-2 text-base text-white font-medium btn text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800">
+                                    {sort ? `Sort by: ${sort}` : 'Sort by'}
+                                </summary>
+                                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow font-semibold">
+                                    <li onClick={() => handleSort('price')}><a>Sort by Camp Fees</a></li>
+                                    <li onClick={() => handleSort('registered')}><a>Sort by Most Registered</a></li>
+                                    <li onClick={() => handleSort('alphabetical')}><a>Sort Alphabetical order</a></li>
+                                </ul>
+                            </details>
+                        </div>
                     </div>
                     <form>
                         <div className='flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
@@ -75,14 +85,6 @@ const AvailableCamps = () => {
                             </button>
                         </div>
                     </form>
-                    <div>
-                        <button
-                            onClick={handleLayoutToggle}
-                            className="px-6 w-full py-3 text-base text-white font-medium text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800"
-                        >
-                             Layout
-                        </button>
-                    </div>
                 </div>
                 <div className={`grid gap-6 pt-8 ${layout === false ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1 md:grid-cols-2'}`}>
                     {

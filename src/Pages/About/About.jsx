@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 
-
 const About = () => {
     return (
         <div className="md:px-12 lg:px-28">

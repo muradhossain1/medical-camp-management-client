@@ -14,12 +14,12 @@ const OrganizerProfile = () => {
             </Helmet>
             <div className="hero bg-red-100 p-4 rounded-lg mt-10 ">
                 <div className="hero-content flex-col lg:flex-row gap-16">
-                    <div className="w-1/2">
+                    <div className="md:w-1/2">
                         <img
                             src={photo}
                             className=" rounded-lg shadow-2xl" />
                     </div>
-                    <div className="w-1/2 space-y-2">
+                    <div className="md:w-1/2 space-y-2">
                         <h1 className="text-2xl font-bold">{name}</h1>
                         <p className="text-xl font-medium flex items-center gap-2">
                             <MdEmail /> {email} </p>

@@ -1,15 +1,16 @@
-import { FaCalendarWeek, FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 import JoinCampModal from "../../Components/JoinCampModal";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 
 const DetailsCamp = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
 
-    const {refetch, data: camp = [] } = useQuery({
+    const { refetch, data: camp = [] } = useQuery({
         queryKey: ['camp-details'],
         queryFn: async () => {
             const res = await axiosPublic.get(`camp-details/${id}`)
@@ -29,10 +30,12 @@ const DetailsCamp = () => {
             </figure>
             <div className=" space-y-2 mt-4 ">
                 <h2 className="card-title font-bold">{campName}</h2>
-                <p>{healthcareName}</p>
+                <div className="flex justify-between items-center">
+                    <p className="text-lg font-semibold">{healthcareName}</p>
+                    <p className="text-lg font-bold">${price}</p>
+                </div>
                 <p className="flex gap-2 items-center"><FaLocationDot /> {location}</p>
-                <p className="flex gap-2 items-center"><FaCalendarWeek /> {date}</p>
-                <p>Camp fees: {price}</p>
+                <p className="flex gap-2 items-center"><FaRegCalendarAlt /> {date}</p>
                 <p> Participant Count: {participantCount}</p>
                 <div className="">
                     <p className="font-semibold text-lg">Description: </p>

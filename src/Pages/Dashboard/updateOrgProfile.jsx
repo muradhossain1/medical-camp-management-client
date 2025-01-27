@@ -20,7 +20,6 @@ const UpdateOrgProfile = () => {
             phone: data?.phone
         }
         const updateData = await axiosSecure.patch(`/update-profile/${_id}`, updateInfo)
-        console.log(updateData.data)
         if (updateData.data.modifiedCount > 0) {
             navigate('/dashboard/organizerProfile')
             Swal.fire({

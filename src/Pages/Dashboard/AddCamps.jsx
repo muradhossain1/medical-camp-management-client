@@ -31,7 +31,6 @@ const AddCamps = () => {
                 participantCount: 0
             }
             const campRes = await axiosSecure.post('/camps', campData)
-            console.log(campRes.data)
             if (campRes.data.insertedId) {
                 reset()
                 Swal.fire({

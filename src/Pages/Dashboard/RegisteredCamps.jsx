@@ -21,7 +21,6 @@ const RegisteredCamps = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/join-camp/${register._id}`)
-                console.log(res.data)
                 if (res.data.deletedCount > 0) {
                     refetch()
                     Swal.fire({

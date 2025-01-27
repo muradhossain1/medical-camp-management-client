@@ -2,8 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { NavLink, Outlet } from "react-router-dom";
 import useOrganizer from "../hooks/useOrganizer";
 
-
-
 const Dashboard = () => {
     const [organizer] = useOrganizer();
     return (
@@ -11,10 +9,13 @@ const Dashboard = () => {
             <Helmet>
                 <title>Medical Capm | Dashboard</title>
             </Helmet>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
                 {/* dashboard side bar */}
-                <div className="w-64 min-h-screen bg-red-100">
-                    <ul className="menu p-4">
+                <div className="md:w-64 md:min-h-screen bg-red-100">
+                    {
+                        organizer ? <h2 className="pl-6 pt-6 text-xl font-bold">Organizer Dashboard</h2> : <h2 className="pl-6 pt-6 text-xl font-bold">Participant Dashboard</h2>
+                    }
+                    <ul className="menu px-4">
                         {
                             organizer ? <>
                                 <li><NavLink to='/dashboard/organizerProfile'>Organizer Profile</NavLink></li>
@@ -34,7 +35,7 @@ const Dashboard = () => {
                     </ul>
                 </div>
                 {/* dashboard contant */}
-                <div className="flex-1 px-20">
+                <div className="flex-1 px-4 md:px-20">
                     <Outlet></Outlet>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaCalendarWeek } from "react-icons/fa";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 
 const CampCard = ({ camp }) => {
@@ -16,14 +16,16 @@ const CampCard = ({ camp }) => {
             </figure>
             <div className=" space-y-2 mt-4 ">
                 <h2 className="card-title font-bold">{campName}</h2>
-                <p>{healthcareName}</p>
-                <p>${price}</p>
+                <div className="flex justify-between items-center">
+                    <p className="text-lg font-semibold">{healthcareName}</p>
+                    <p className="text-lg font-bold">${price}</p>
+                </div>
                 <p className="flex gap-2 items-center"><FaLocationDot /> {location}</p>
-                <p className="flex gap-2 items-center"><FaCalendarWeek /> {date}</p>
+                <p className="flex gap-2 items-center"><FaRegCalendarAlt /> {date}</p>
                 <p> Participant Count: {participantCount}</p>
                 <div className="">
                     <p className="font-semibold text-lg">Description: </p>
-                    <p className="text-base text-gray-500">{description}</p>
+                    <p className="text-base ">{description}</p>
                 </div>
                 <div className="card-actions ">
                     <Link to={`/details/${_id}`} className="px-6 w-full py-2 text-base text-white font-medium text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800">
