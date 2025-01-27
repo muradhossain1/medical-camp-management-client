@@ -30,7 +30,7 @@ const JoinCampModal = ({ camp, refetch }) => {
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: `Added camp successfully!!`,
+                title: `Join camp successfully!!`,
                 showConfirmButton: false,
                 timer: 1500
             });

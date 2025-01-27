@@ -4,6 +4,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import CampCard from '../../Components/CampCard';
 import FeedbackSection from '../../Components/FeedbackSection';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -26,7 +27,10 @@ const Home = () => {
             <main >
                 {/* Popular Medical Camps section */}
                 <div>
-                    <h2 className="text-2xl my-8 md:text-4xl text-center font-bold ">Popular Medical Camps </h2>
+                    <div className="flex flex-col md:flex-row justify-between">
+                        <h2 className="text-4xl text-center font-bold py-8">Popular Medical Camps</h2>
+                        <Link to='/avaiableCamps'><button className="px-6 w-full py-3 text-base text-white font-medium text-center my-4 md:my-8 bg-gray-700 rounded-md hover:bg-gray-800">See All Camps</button></Link>
+                    </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
                             camps?.map(camp => <CampCard key={camp._id} camp={camp}></CampCard>)

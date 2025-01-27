@@ -21,7 +21,7 @@ const FeedbackSection = () => {
                 {
                     feedbacks?.map(feedback => <div key={feedback._id} className="flex flex-col md:flex-row gap-6 border shadow-lg rounded-lg p-4">
                         <div>
-                            <img src={feedback.image} className="mx-auto w-28 h-28 rounded-lg" alt="" />
+                            <img src={feedback.image} className="mx-auto w-36 h-28 rounded-lg" alt="" />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold">{feedback.name}</h2>

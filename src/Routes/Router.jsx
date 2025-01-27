@@ -21,11 +21,13 @@ import UpdateParticipantProfile from "../Pages/Dashboard/updateParticipantProfil
 import RegisteredCamps from "../Pages/Dashboard/RegisteredCamps";
 import PaymentCamp from "../Pages/Dashboard/PaymentCamp";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
+import ErrorPage from "../Pages/Error/ErrorPage";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',

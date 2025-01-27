@@ -1,4 +1,6 @@
 import logoCamp from '../../../public/logo.png'
+import { MdAddCall, MdEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6"
 
 
 const Footer = () => {
@@ -20,12 +22,12 @@ const Footer = () => {
                     <a className="link link-hover">Payment</a>
                     <a className="link link-hover">Register</a>
                 </nav>
-                <nav>
-                    <h6 className="footer-title">Company</h6>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Press kit</a>
-                </nav>
+                <nav className=" flex flex-col gap-1">
+                    <h6 className="footer-title ">Contact</h6>
+                    <a className=" flex items-center gap-2"><FaLocationDot /> Dhaka, Bangladesh</a>
+                    <a className=" flex items-center gap-2"><MdEmail /> muradssq12@gmail.com</a>
+                    <a className=" flex items-center gap-2"><MdAddCall />+8801872687900</a>
+                </nav >
                 <nav>
                     <h6 className="footer-title">Legal</h6>
                     <a className="link link-hover">Terms of use</a>
