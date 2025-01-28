@@ -104,7 +104,7 @@ const Router = createBrowserRouter([
       {
         path: 'updateCamp/:id',
         element: <OrganizerRoutes><CampUpdate></CampUpdate></OrganizerRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/camps/${params.id}`)
+        loader: ({ params }) => fetch(`https://medical-camp-management-server-sooty.vercel.app/camps/${params.id}`)
       },
       {
         path: 'manageRegistered',
