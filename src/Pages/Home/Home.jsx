@@ -6,6 +6,7 @@ import CampCard from '../../Components/CampCard';
 import FeedbackSection from '../../Components/FeedbackSection';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import NewsLetter from '../../Components/Newletter';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -43,6 +44,9 @@ const Home = () => {
             {/* feedbeck */}
             <div>
                 <FeedbackSection></FeedbackSection>
+            </div>
+            <div>
+                <NewsLetter></NewsLetter>
             </div>
         </div>
     );
