@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
 
 const ManageRegistered = () => {
     const axiosSecure = useAxiosSecure();
+    const { theme } = useAuth();
 
     const { data: registers = [], refetch } = useQuery({
         queryKey: ['registers'],
@@ -61,12 +63,12 @@ const ManageRegistered = () => {
                 <title>Dashboard | Manage Registered</title>
             </Helmet>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Manage Registered</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? ' ' : 'text-white'}`}>Manage Registered</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className={`${theme === 'light' ? ' ' : 'text-white'}`}>
                         <tr>
                             <th>#</th>
                             <th>Participant Name</th>
@@ -87,14 +89,14 @@ const ManageRegistered = () => {
                                 <td>{register.paymentStatus === 'paid' ? 'Paid' : 'Unpaid'}</td>
                                 <td>
                                     {
-                                        register.confirmationStatus === 'confirm' ? 'Confirm' : <button onClick={() => handleMakeConfirm(register)} className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100">
+                                        register.confirmationStatus === 'confirm' ? 'Confirm' : <button onClick={() => handleMakeConfirm(register)} className="py-2 px-4 rounded-md text-black bg-red-200 hover:bg-red-100">
                                             Panding
                                         </button>
                                     }
                                 </td>
                                 <td>
                                     {register.paymentStatus === 'paid' && register.confirmationStatus === 'confirm' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
-                                        className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100"
+                                        className="py-2 px-4 text-black rounded-md  bg-red-200 hover:bg-red-100"
                                     >cancel</button>}
                                 </td>
                             </tr>)

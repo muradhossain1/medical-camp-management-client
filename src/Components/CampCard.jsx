@@ -29,7 +29,7 @@ const CampCard = ({ camp }) => {
                 </div>
                 <div className="card-actions ">
                     <Link to={`/details/${_id}`} className="px-6 w-full py-2 text-base text-white font-medium text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800">
-                        details
+                        Details
                     </Link>
                 </div>
             </div>

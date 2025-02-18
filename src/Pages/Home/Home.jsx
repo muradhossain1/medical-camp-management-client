@@ -5,9 +5,11 @@ import { useQuery } from '@tanstack/react-query';
 import CampCard from '../../Components/CampCard';
 import FeedbackSection from '../../Components/FeedbackSection';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
+    const { theme } = useAuth();
 
     const { data: camps = [] } = useQuery({
         queryKey: ['participant-count'],
@@ -28,7 +30,7 @@ const Home = () => {
                 {/* Popular Medical Camps section */}
                 <div>
                     <div className="flex flex-col md:flex-row justify-between">
-                        <h2 className="text-4xl text-center font-bold py-8">Popular Medical Camps</h2>
+                        <h2 className={`text-4xl text-center font-bold py-8 ${theme === 'light' ? '' : 'text-white'}`}>Popular Medical Camps</h2>
                         <Link to='/avaiableCamps'><button className="px-6 w-full py-3 text-base text-white font-medium text-center my-4 md:my-8 bg-gray-700 rounded-md hover:bg-gray-800">See All Camps</button></Link>
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

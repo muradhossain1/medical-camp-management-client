@@ -5,11 +5,13 @@ import CheakOutForm from "../../Components/CheakOutForm";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK);
 const PaymentCamp = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
+    const { theme } = useAuth();
 
     const { data: register = [], refetch } = useQuery({
         queryKey: ['join-camp'],
@@ -24,7 +26,7 @@ const PaymentCamp = () => {
                 <title>Dashboard | Payment</title>
             </Helmet>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Payment camp</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? ' ' : 'text-white'}`}>Payment camp</h2>
             </div>
             <Elements stripe={stripePromise}>
                 <CheakOutForm register={register} refetch={refetch}></CheakOutForm>

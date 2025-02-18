@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 
 
 const PaymentHistory = () => {
-    const { user } = useAuth();
+    const { user, theme } = useAuth();
     const axiosSecure = useAxiosSecure();
 
     const { data: payments = [] } = useQuery({
@@ -21,12 +21,12 @@ const PaymentHistory = () => {
                 <title>Dashboard | Payment History</title>
             </Helmet>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Your Payment History</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? ' ' : 'text-white'}`}>Your Payment History</h2>
             </div>
             <div className="overflow-x-auto ">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className={`${theme === 'light' ? ' ' : 'text-white'}`}>
                         <tr>
                             <th>#</th>
                             <th>Camp Name</th>

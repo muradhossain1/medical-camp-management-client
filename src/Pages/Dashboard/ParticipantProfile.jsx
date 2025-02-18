@@ -2,17 +2,19 @@ import { MdAddCall, MdEmail, MdLocationOn } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import useProfile from "../../hooks/useProfile";
+import useAuth from "../../hooks/useAuth";
 
 
 const ParticipantProfile = () => {
     const [profileData] = useProfile();
     const { _id, photo, name, email, address, phone } = profileData;
+    const { theme } = useAuth();
     return (
         <div>
             <Helmet>
                 <title>Dashboard | Participant Profile </title>
             </Helmet>
-            <div className="hero bg-red-100 p-4 rounded-lg mt-10 ">
+            <div className={`hero p-4 rounded-lg mt-10 ${theme === 'light' ? ' bg-red-100 ' : 'text-white border bg-gray-800'}`}>
                 <div className="hero-content flex-col lg:flex-row gap-16">
                     <div className="md:w-1/2">
                         <img

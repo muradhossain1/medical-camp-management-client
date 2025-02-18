@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { NavLink, Outlet } from "react-router-dom";
 import useOrganizer from "../hooks/useOrganizer";
+import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
     const [organizer] = useOrganizer();
+    const { theme } = useAuth();
     return (
         <div>
             <Helmet>
@@ -11,7 +13,7 @@ const Dashboard = () => {
             </Helmet>
             <div className="flex flex-col md:flex-row">
                 {/* dashboard side bar */}
-                <div className="md:w-64 md:min-h-screen bg-red-100">
+                <div className={`md:w-64 md:min-h-screen bg-red-100 ${theme === 'light' ? 'bg-red-100' : 'bg-gray-800 text-white'}`}>
                     {
                         organizer ? <h2 className="pl-6 pt-6 text-xl font-bold">Organizer Dashboard</h2> : <h2 className="pl-6 pt-6 text-xl font-bold">Participant Dashboard</h2>
                     }

@@ -33,7 +33,7 @@ const FeedbackModal = ({ refetch }) => {
     }
     return (
         <div>
-            <button className=" py-2 px-4 rounded-md bg-red-200 hover:bg-red-100" onClick={() => document.getElementById('my_modal_5').showModal()}>Feedback</button>
+            <button className=" py-2 px-4 rounded-md text-black bg-red-200 hover:bg-red-100" onClick={() => document.getElementById('my_modal_5').showModal()}>Feedback</button>
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <div>

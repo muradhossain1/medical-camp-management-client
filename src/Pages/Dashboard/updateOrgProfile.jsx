@@ -3,6 +3,7 @@ import useProfile from "../../hooks/useProfile";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const UpdateOrgProfile = () => {
     const [profileData] = useProfile();
@@ -10,6 +11,7 @@ const UpdateOrgProfile = () => {
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+    const { theme } = useAuth();
 
     const onSubmit = async (data) => {
         const updateInfo = {
@@ -34,7 +36,7 @@ const UpdateOrgProfile = () => {
     return (
         <div>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Update Your profile</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? '' : 'text-white'}`}>Update Your profile</h2>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="md:w-1/2 mx-auto">

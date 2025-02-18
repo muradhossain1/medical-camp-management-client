@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../../public/logo.png'
+import { FiSun } from "react-icons/fi";
+import { FaMoon } from "react-icons/fa6";
 
 
 const Navber = () => {
-    const { user, logOut } = useAuth()
+    const { user, logOut, theme, toggleTheme } = useAuth()
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -31,7 +33,7 @@ const Navber = () => {
         {/* {!user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''} */}
     </>
     return (
-        <div className="navbar bg-red-50 fixed z-10 top-0 md:px-12 lg:px-20">
+        <div className={`navbar ${theme === 'light' ? 'bg-red-50 ' : 'bg-gray-800 text-white'} fixed z-10 top-0 md:px-12 lg:px-20`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,6 +69,9 @@ const Navber = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <div onClick={toggleTheme} className="mr-4">
+                    {theme === 'light' ? <button><FaMoon className="w-6 h-6 mt-1" /></button> : <button ><FiSun className="w-6 h-6 mt-1" /></button>}
+                </div>
                 {user ? <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-12 rounded-full">

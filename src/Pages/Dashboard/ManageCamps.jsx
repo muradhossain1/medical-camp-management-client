@@ -5,11 +5,13 @@ import { MdEdit } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const ManageCamps = () => {
     const [camps, , refetch] = useCamps();
     const axiosSecure = useAxiosSecure();
+    const { theme } = useAuth();
 
     const handleDeleteCamp = camp => {
         Swal.fire({
@@ -43,12 +45,12 @@ const ManageCamps = () => {
                 <title>Dashboard | Manage Camps</title>
             </Helmet>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Manage Your Camps</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? ' ' : 'text-white'}`}>Manage Your Camps</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className={` ${theme === 'light' ? ' ' : 'text-white'}`}>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -68,7 +70,7 @@ const ManageCamps = () => {
                                 <td>{camp.healthcareName}</td>
                                 <td className="flex gap-3 items-center">
                                     <Link to={`/dashboard/updateCamp/${camp._id}`}>
-                                        <button className="py-3 text-sm px-4 rounded-md bg-red-100 hover:bg-red-200"><MdEdit></MdEdit></button>
+                                        <button className="py-3 text-sm px-4 rounded-md bg-red-100 text-black hover:bg-red-200"><MdEdit></MdEdit></button>
                                     </Link>
                                     <button onClick={() => handleDeleteCamp(camp)} className="py-3 px-4 rounded-md text-red-600 bg-gray-100 hover:bg-gray-200"><FaTrashAlt></FaTrashAlt></button>
                                 </td>

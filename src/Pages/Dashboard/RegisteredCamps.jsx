@@ -4,10 +4,12 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import FeedbackModal from "../../Components/FeedbackModal";
+import useAuth from "../../hooks/useAuth";
 
 const RegisteredCamps = () => {
     const [registers, refetch] = useJoinCamps();
     const axiosSecure = useAxiosSecure();
+    const { theme } = useAuth();
 
     const handleDeleteRegister = (register) => {
         Swal.fire({
@@ -41,12 +43,12 @@ const RegisteredCamps = () => {
                 <title>Dashboard | Registerd</title>
             </Helmet>
             <div>
-                <h2 className="text-center text-4xl font-bold my-6">Manage Your Camps</h2>
+                <h2 className={`text-center text-4xl font-bold my-6 ${theme === 'light' ? ' ' : 'text-white'}`}>Manage Your Camps</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className={`${theme === 'light' ? ' ' : 'text-white'}`}>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -75,7 +77,7 @@ const RegisteredCamps = () => {
                                 </td>
                                 <td >
                                     {register.paymentStatus === 'paid' ? <button disabled className="py-2 px-4 bg-gray-200 rounded-md text-gray-500">Cancel</button> : <button onClick={() => handleDeleteRegister(register)}
-                                        className="py-2 px-4 rounded-md  bg-red-200 hover:bg-red-100"
+                                        className="py-2 px-4 rounded-md text-black  bg-red-200 hover:bg-red-100"
                                     >cancel</button>}
                                 </td>
                                 <td>
