@@ -7,6 +7,7 @@ import FeedbackSection from '../../Components/FeedbackSection';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import NewsLetter from '../../Components/Newletter';
+import HeartAndScience from '../../Components/HeartAndScience';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -41,6 +42,9 @@ const Home = () => {
                     </div>
                 </div>
             </main>
+            <div>
+                <HeartAndScience></HeartAndScience>
+            </div>
             {/* feedbeck */}
             <div>
                 <FeedbackSection></FeedbackSection>
