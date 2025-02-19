@@ -41,7 +41,7 @@ const JoinCampModal = ({ camp, refetch }) => {
     }
     return (
         <div>
-            <button className="px-6 py-2 text-base text-white font-medium my-2 bg-gray-700 rounded-md hover:bg-gray-800" onClick={() => document.getElementById('my_modal_5').showModal()}>Join Camp</button>
+            <button className="px-6 py-2 text-base text-white border border-gray-700 font-medium my-2 bg-gray-700 rounded-md hover:bg-gray-800" onClick={() => document.getElementById('my_modal_5').showModal()}>Join Camp</button>
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <div>

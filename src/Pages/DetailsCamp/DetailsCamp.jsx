@@ -42,7 +42,7 @@ const DetailsCamp = () => {
                     <p className="text-base text-gray-500">{description}</p>
                 </div>
                 <div className="flex items-center justify-end gap-3">
-                    <Link to='/avaiableCamps' className="px-6 py-2 text-base text-white font-medium text-center my-2 bg-gray-700 rounded-md hover:bg-gray-800">
+                    <Link to='/avaiableCamps' className="px-6 py-2 text-base font-medium text-center my-2 border border-gray-700 rounded-md hover:text-white hover:bg-gray-700">
                         Avaiable Camps
                     </Link>
                     <JoinCampModal camp={camp} refetch={refetch}></JoinCampModal>

@@ -21,8 +21,8 @@ const Footer = () => {
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <Link to='/avaiableCamps' className="link link-hover">All Camps</Link>
-                    <a className="link link-hover">Register Camp</a>
-                    <a className="link link-hover">Payment</a>
+                    <Link to='/registerCamp' className="link link-hover">Register Camp</Link>
+                    <Link to='/featured' className="link link-hover">Featured</Link>
                 </nav>
                 <nav className=" flex flex-col gap-1">
                     <h6 className="footer-title ">Contact</h6>
@@ -34,7 +34,6 @@ const Footer = () => {
                     <h6 className="footer-title">Legal</h6>
                     <a className="link link-hover">Terms of use</a>
                     <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
                 </nav>
             </footer>
         </div>
