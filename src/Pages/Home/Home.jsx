@@ -9,6 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import NewsLetter from '../../Components/Newletter';
 import HeartAndScience from '../../Components/HeartAndScience';
 import WorkingProcesss from '../../Components/WorkingProcesss';
+import VariousDirections from '../../Components/VariousDirections';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -48,6 +49,9 @@ const Home = () => {
             </div>
             <div>
                 <WorkingProcesss></WorkingProcesss>
+            </div>
+            <div>
+                <VariousDirections></VariousDirections>
             </div>
             {/* feedbeck */}
             <div>
