@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import NewsLetter from '../../Components/Newletter';
 import HeartAndScience from '../../Components/HeartAndScience';
+import WorkingProcesss from '../../Components/WorkingProcesss';
 
 const Home = () => {
     const axiosPublic = useAxiosPublic();
@@ -44,6 +45,9 @@ const Home = () => {
             </main>
             <div>
                 <HeartAndScience></HeartAndScience>
+            </div>
+            <div>
+                <WorkingProcesss></WorkingProcesss>
             </div>
             {/* feedbeck */}
             <div>
