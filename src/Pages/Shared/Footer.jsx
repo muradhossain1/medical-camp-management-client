@@ -2,6 +2,7 @@ import logoCamp from '../../../public/logo.png'
 import { MdAddCall, MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6"
 import useAuth from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -19,10 +20,9 @@ const Footer = () => {
                 </aside>
                 <nav>
                     <h6 className="footer-title">Services</h6>
-                    <a className="link link-hover">All Camps</a>
-                    <a className="link link-hover">Join Camp</a>
+                    <Link to='/avaiableCamps' className="link link-hover">All Camps</Link>
+                    <a className="link link-hover">Register Camp</a>
                     <a className="link link-hover">Payment</a>
-                    <a className="link link-hover">Register</a>
                 </nav>
                 <nav className=" flex flex-col gap-1">
                     <h6 className="footer-title ">Contact</h6>

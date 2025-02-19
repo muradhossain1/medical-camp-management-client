@@ -29,8 +29,9 @@ const Navber = () => {
     const navlinks = <>
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
         <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
+        {user ? <li><Link className="font-semibold text-sm" to='/featured'>Featured</Link></li>: ''}
+        {user ? <li><Link className="font-semibold text-sm" to='/registerCamps'>Register Camps</Link></li>: ''}
         <li><Link className="font-semibold text-sm" to='/about'>About Us</Link></li>
-        {/* {!user ? <li><Link className="font-semibold text-sm" to='/login'>Join Us</Link></li> : ''} */}
     </>
     return (
         <div className={`navbar ${theme === 'light' ? 'bg-red-50 ' : 'bg-gray-800 text-white'} fixed z-10 top-0 md:px-12 lg:px-20`}>
