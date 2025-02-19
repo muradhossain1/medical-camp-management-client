@@ -18,9 +18,9 @@ const FeaturedCamps = () => {
     return (
         <div className="overflow-x-auto ">
             <Helmet>
-                <title>Medical Capm | Featured</title>
+                <title>Medical Camp | Featured</title>
             </Helmet>
-            <h2 className={`text-2xl md:text-4xl text-center font-bold my-8 ${theme === 'light' ? '' : 'text-white'}`}>Featured Top Price Medical Camps</h2>
+            <h2 className={`text-2xl md:text-4xl text-center font-bold my-8 ${theme === 'light' ? '' : 'text-white'}`}>Featured Highest Price Medical Camps</h2>
             <table className="table">
                 {/* head */}
                 <thead className={`${theme === 'light' ? 'bg-green-50' : 'text-white'}`}>

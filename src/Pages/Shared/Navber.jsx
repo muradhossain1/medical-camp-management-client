@@ -30,7 +30,7 @@ const Navber = () => {
         <li><Link className="font-semibold text-sm" to='/'>Home</Link></li>
         <li><Link className="font-semibold text-sm" to='/avaiableCamps'>Available Camps</Link></li>
         {user ? <li><Link className="font-semibold text-sm" to='/featured'>Featured</Link></li>: ''}
-        {user ? <li><Link className="font-semibold text-sm" to='/registerCamps'>Register Camps</Link></li>: ''}
+        {user ? <li><Link className="font-semibold text-sm" to='/registerCamp'>Register Camps</Link></li>: ''}
         <li><Link className="font-semibold text-sm" to='/about'>About Us</Link></li>
     </>
     return (

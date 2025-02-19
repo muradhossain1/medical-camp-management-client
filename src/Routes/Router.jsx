@@ -23,6 +23,7 @@ import PaymentCamp from "../Pages/Dashboard/PaymentCamp";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import FeaturedCamps from "../Pages/Featured/FeaturedCamp";
+import RegisterCamps from "../Pages/RegisterCamp/RegisterCamps";
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const Router = createBrowserRouter([
       {
         path: '/featured',
         element: <PrivateRoute><FeaturedCamps></FeaturedCamps></PrivateRoute>
+      },
+      {
+        path: '/registerCamp',
+        element: <PrivateRoute><RegisterCamps></RegisterCamps></PrivateRoute>
       },
       {
         path: '/details/:id',
