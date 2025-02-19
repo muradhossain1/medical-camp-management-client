@@ -1,12 +1,14 @@
 import logoCamp from '../../../public/logo.png'
 import { MdAddCall, MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6"
+import useAuth from '../../hooks/useAuth';
 
 
 const Footer = () => {
+    const { theme } = useAuth();
     return (
         <div className="mt-12">
-            <footer className="footer md:px-12 lg:px-20 bg-base-200 text-base-content p-10">
+            <footer className={`footer md:px-12 lg:px-20 text-base-content p-10 ${theme === 'light' ? 'bg-red-50' : 'bg-gray-800'}`}>
                 <aside>
                     <img className="w-16" src={logoCamp} alt="" />
                     <div>
